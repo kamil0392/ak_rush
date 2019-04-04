@@ -6,18 +6,20 @@ public class BulletSpawnerScript : MonoBehaviour
 {
 
     public GameObject prefab;
-    
+    AmmoController ammoController;
     // Start is called before the first frame update
     void Start()
     {
+        ammoController = transform.parent.Find("AmmoController").gameObject.GetComponent<AmmoController>();
     }
 
     // Update is called once per frame
-    void Update()
+    public void Fire()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (ammoController.removeAmmo())
         {
             Instantiate(prefab, transform.position, transform.rotation);
         }
+        
     }
 }
